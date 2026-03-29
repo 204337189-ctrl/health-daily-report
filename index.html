@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🩺 健康日报 | 2026-03-29</title>
+<style>
+:root {
+  --bg: #050d0d;
+  --surface: rgba(8, 22, 22, 0.88);
+  --surface2: rgba(12, 28, 28, 0.92);
+  --border: rgba(52, 211, 153, 0.12);
+  --text: #e6f4f1;
+  --text2: #7fb3a8;
+  --teal: #2dd4bf;
+  --green: #34d399;
+  --red: #f87171;
+  --orange: #fb923c;
+  --yellow: #fbbf24;
+  --purple: #a78bfa;
+  --pink: #f472b6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── BG ── */
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(45,212,191,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45,212,191,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.bg-glow { position: fixed; border-radius: 50%; filter: blur(120px); pointer-events: none; z-index: 0; }
+.bg-1 { width: 500px; height: 500px; top: -100px; left: -100px; background: rgba(45,212,191,0.07); }
+.bg-2 { width: 400px; height: 400px; bottom: 0; right: -80px; background: rgba(52,211,153,0.06); }
+.bg-3 { width: 350px; height: 350px; top: 50%; left: 50%; background: rgba(167,139,250,0.05); }
+
+.container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 20px 80px; }
+
+/* ── Hero ── */
+.hero { text-align: center; padding: 48px 20px 32px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 18px; border-radius: 99px;
+  background: linear-gradient(135deg, rgba(45,212,191,0.15), rgba(52,211,153,0.1));
+  border: 1px solid rgba(45,212,191,0.3);
+  font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 20px;
+}
+.live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: blink 2s infinite; }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.2; } }
+h1.title {
+  font-size: clamp(28px, 5vw, 56px); font-weight: 900; letter-spacing: -0.02em; line-height: 1.15;
+  background: linear-gradient(135deg, #fff 20%, var(--teal) 60%, var(--green) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+.hero-sub { font-size: 15px; color: var(--text2); margin-bottom: 24px; }
+.stats {
+  display: inline-flex; border-radius: 20px; overflow: hidden;
+  border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(20px);
+}
+.stat-item { padding: 14px 24px; text-align: center; border-right: 1px solid var(--border); min-width: 100px; }
+.stat-item:last-child { border-right: none; }
+.stat-n { font-size: 26px; font-weight: 900; background: linear-gradient(135deg, var(--teal), var(--green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-l { font-size: 10px; color: var(--text2); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 3px; }
+
+/* ── User Profile Banner ── */
+.profile {
+  background: linear-gradient(135deg, rgba(45,212,191,0.1), rgba(167,139,250,0.08));
+  border: 1px solid rgba(45,212,191,0.25);
+  border-radius: 20px; padding: 20px 26px; margin: 20px 0;
+  backdrop-filter: blur(20px);
+}
+.profile h2 { font-size: 14px; color: var(--teal); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+.profile-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.profile-tag {
+  font-size: 12px; font-weight: 600; padding: 4px 14px; border-radius: 99px;
+  background: rgba(248,113,113,0.12); color: var(--red);
+  border: 1px solid rgba(248,113,113,0.25);
+}
+.profile-tag:nth-child(2) { background: rgba(251,146,60,0.12); color: var(--orange); border-color: rgba(251,146,60,0.25); }
+.profile-tag:nth-child(3) { background: rgba(251,191,36,0.12); color: var(--yellow); border-color: rgba(251,191,36,0.25); }
+.profile-tag:nth-child(4) { background: rgba(167,139,250,0.12); color: var(--purple); border-color: rgba(167,139,250,0.25); }
+.profile-tag:nth-child(5) { background: rgba(45,212,191,0.12); color: var(--teal); border-color: rgba(45,212,191,0.25); }
+.profile p { font-size: 13px; color: var(--text2); margin-top: 12px; line-height: 1.7; }
+
+/* ── Summary Cards ── */
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin: 20px 0; }
+.sum-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 18px; padding: 18px 20px;
+  backdrop-filter: blur(20px);
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.sum-card:hover { transform: translateY(-3px); }
+.sum-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; border-radius: 18px 18px 0 0; }
+.sum-card:nth-child(1)::before { background: linear-gradient(90deg, var(--red), var(--orange)); }
+.sum-card:nth-child(2)::before { background: linear-gradient(90deg, var(--green), var(--teal)); }
+.sum-card:nth-child(3)::before { background: linear-gradient(90deg, var(--teal), var(--purple)); }
+.sum-card:nth-child(4)::before { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+.sum-card h3 { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+.sum-card p { font-size: 13.5px; line-height: 1.7; color: var(--text); }
+
+/* ── Tab Bar ── */
+.tab-bar {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin: 24px 0 0; padding: 12px 16px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 20px; backdrop-filter: blur(20px);
+}
+.tab-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 12px;
+  border: none; background: transparent; color: var(--text2);
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1);
+}
+.tab-btn .tab-count { font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 99px; background: rgba(255,255,255,0.08); color: var(--text2); }
+.tab-btn:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+.tab-btn.active { color: #fff; }
+.tab-btn.active .tab-count { background: rgba(255,255,255,0.2); }
+.tab-btn[data-tab="all"].active { background: linear-gradient(135deg, var(--teal), var(--green)); box-shadow: 0 4px 20px rgba(45,212,191,0.35); }
+.tab-btn[data-tab="caution"].active { background: linear-gradient(135deg, var(--red), var(--orange)); box-shadow: 0 4px 20px rgba(248,113,113,0.35); }
+.tab-btn[data-tab="diet"].active { background: linear-gradient(135deg, var(--green), var(--teal)); box-shadow: 0 4px 20px rgba(52,211,153,0.35); }
+.tab-btn[data-tab="news"].active { background: linear-gradient(135deg, var(--purple), var(--pink)); box-shadow: 0 4px 20px rgba(167,139,250,0.35); }
+.tab-btn[data-tab="local"].active { background: linear-gradient(135deg, var(--orange), var(--yellow)); box-shadow: 0 4px 20px rgba(251,146,60,0.35); }
+
+/* ── Section ── */
+.section { margin-bottom: 8px; }
+.sec-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 18px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; cursor: pointer;
+  backdrop-filter: blur(20px); transition: all 0.2s; user-select: none;
+}
+.sec-header:hover { background: var(--surface2); }
+.sec-header.open { border-radius: 16px 16px 0 0; border-bottom-color: transparent; }
+.sec-left { display: flex; align-items: center; gap: 10px; }
+.sec-icon { font-size: 18px; }
+.sec-title { font-size: 15px; font-weight: 700; }
+.sec-count { font-size: 11px; background: rgba(45,212,191,0.1); color: var(--teal); padding: 2px 10px; border-radius: 99px; }
+.sec-arrow { font-size: 14px; color: var(--text2); transition: transform 0.3s; }
+.sec-header.open .sec-arrow { transform: rotate(180deg); }
+.sec-body {
+  display: none; background: var(--surface); border: 1px solid var(--border);
+  border-top: none; border-radius: 0 0 16px 16px; padding: 16px;
+  backdrop-filter: blur(20px);
+}
+.sec-body.open { display: block; animation: fadeUp 0.25s ease-out; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Cards */
+.news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 14px; }
+.news-card {
+  background: rgba(5, 15, 15, 0.7); border: 1px solid var(--border);
+  border-radius: 16px; padding: 18px 20px;
+  transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1); position: relative; overflow: hidden;
+}
+.news-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; border-radius: 3px 0 0 3px; background: linear-gradient(180deg, var(--teal), var(--green)); opacity: 0; transition: opacity 0.3s; }
+.news-card:hover { border-color: rgba(45,212,191,0.35); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(45,212,191,0.08); }
+.news-card:hover::before { opacity: 1; }
+
+.tag { font-size: 10px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; padding: 3px 9px; border-radius: 6px; }
+.tag-red { background: rgba(248,113,113,0.12); color: var(--red); }
+.tag-green { background: rgba(52,211,153,0.12); color: var(--green); }
+.tag-teal { background: rgba(45,212,191,0.12); color: var(--teal); }
+.tag-orange { background: rgba(251,146,60,0.12); color: var(--orange); }
+.tag-yellow { background: rgba(251,191,36,0.12); color: var(--yellow); }
+
+.tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.news-card h3 { font-size: 14.5px; font-weight: 700; line-height: 1.5; margin-bottom: 8px; color: var(--text); }
+.news-card .desc { font-size: 13px; color: var(--text2); line-height: 1.65; margin-bottom: 12px; }
+.news-card .meta { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(127,179,168,0.5); }
+.news-card .meta a { color: var(--teal); text-decoration: none; font-weight: 600; }
+.news-card .meta a:hover { text-decoration: underline; }
+
+/* ── Diet Table ── */
+.diet-table { width: 100%; border-collapse: collapse; }
+.diet-table th { text-align: left; padding: 10px 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text2); border-bottom: 1px solid var(--border); }
+.diet-table td { padding: 12px 16px; font-size: 13px; border-bottom: 1px solid rgba(45,212,191,0.06); vertical-align: top; }
+.diet-table tr:last-child td { border-bottom: none; }
+.diet-table .food { font-weight: 700; color: var(--teal); }
+.diet-table .avoid { color: var(--red); font-weight: 700; }
+.diet-table .note { color: var(--text2); font-size: 12px; }
+
+/* ── Caution List ── */
+.caution-list { list-style: none; }
+.caution-list li { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(45,212,191,0.06); align-items: flex-start; }
+.caution-list li:last-child { border-bottom: none; }
+.caution-icon { font-size: 20px; flex-shrink: 0; }
+.caution-text { font-size: 13.5px; line-height: 1.7; color: var(--text); }
+.caution-text strong { color: var(--orange); }
+.caution-text em { color: var(--teal); font-style: normal; }
+
+/* ── Local Food ── */
+.local-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; }
+.local-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 18px; transition: transform 0.25s;
+}
+.local-card:hover { transform: translateY(-3px); }
+.local-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+.local-card p { font-size: 12.5px; color: var(--text2); line-height: 1.65; margin-bottom: 10px; }
+.local-card .badge { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 6px; }
+.badge-allow { background: rgba(52,211,153,0.15); color: var(--green); }
+.badge-avoid { background: rgba(248,113,113,0.15); color: var(--red); }
+.badge-mod { background: rgba(251,146,60,0.15); color: var(--orange); }
+
+/* Footer */
+.footer { text-align: center; padding: 28px 20px; color: rgba(127,179,168,0.3); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+.footer strong { color: rgba(45,212,191,0.4); }
+
+.section.hidden { display: none !important; }
+
+@media (max-width: 640px) {
+  .news-grid, .local-grid { grid-template-columns: 1fr; }
+  .stats { flex-wrap: wrap; }
+  .stat-item { min-width: 80px; padding: 10px 14px; }
+}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-glow bg-1"></div>
+<div class="bg-glow bg-2"></div>
+<div class="bg-glow bg-3"></div>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge"><span class="live-dot"></span> 2026.03.29 · 每日健康养生</div>
+  <h1 class="title">🩺 健康日报</h1>
+  <p class="hero-sub">星野整理 · 专属您的50岁心血管调养方案</p>
+  <div class="stats">
+    <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">核心分类</div></div>
+    <div class="stat-item"><div class="stat-n">8</div><div class="stat-l">注意事项</div></div>
+    <div class="stat-item"><div class="stat-n">10+</div><div class="stat-l">饮食建议</div></div>
+    <div class="stat-item"><div class="stat-n">河南周口</div><div class="stat-l">地区特色</div></div>
+  </div>
+</div>
+
+<!-- USER PROFILE -->
+<div class="profile">
+  <h2>👤 健康档案 · 星野专属定制</h2>
+  <div class="profile-tags">
+    <span class="profile-tag">🔴 高血脂</span>
+    <span class="profile-tag">🟠 高血糖</span>
+    <span class="profile-tag">🟡 心率过高</span>
+    <span class="profile-tag">🟣 脑梗史</span>
+    <span class="profile-tag">🩵 血管硬化</span>
+  </div>
+  <p>针对50岁人群 · 河南周口地区饮食风俗 · 高血糖高血脂心血管风险调控方案</p>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary">
+  <div class="sum-card"><h3>⚠️ 今日重点</h3><p>气温回升，血管扩张，血压波动大，早晨起床不宜过猛；今日饮食重点降低血液黏稠度，推荐芹菜洋葱配粗粮早餐。</p></div>
+  <div class="sum-card"><h3>🥗 饮食核心</h3><p>优选膳食纤维，降低血糖峰值；限盐控油，每日盐&lt;5g，油&lt;25g；推荐周口豆腐脑配全麦馒头，小米粥代替白粥。</p></div>
+  <div class="sum-card"><h3>🏃 运动建议</h3><p>以有氧为主，心率控制在（220-50）×0.6=102次/分以下，推荐早餐后散步30分钟，或太极拳/八段锦。</p></div>
+  <div class="sum-card"><h3>💊 特别提示</h3><p>春季气温多变，注意按时服药，不要自行停药；早起喝一杯温水，睡前泡脚（水温≤40℃），预防清晨心脑血管意外。</p></div>
+</div>
+
+<!-- TABS -->
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="all" onclick="filterTab('all',this)">📋 全部</button>
+  <button class="tab-btn" data-tab="caution" onclick="filterTab('caution',this)">⚠️ 注意 <span class="tab-count">8</span></button>
+  <button class="tab-btn" data-tab="diet" onclick="filterTab('diet',this)">🥗 饮食 <span class="tab-count">10</span></button>
+  <button class="tab-btn" data-tab="news" onclick="filterTab('news',this)">📰 资讯 <span class="tab-count">6</span></button>
+  <button class="tab-btn" data-tab="local" onclick="filterTab('local',this)">🏠 周口 <span class="tab-count">8</span></button>
+</div>
+
+<!-- ══ 每日注意事项 ══ -->
+<div class="section" id="sec-caution">
+  <div class="sec-header open" onclick="toggleSection(this)">
+    <div class="sec-left"><span class="sec-icon">⚠️</span><span class="sec-title">每日注意事项</span><span class="sec-count">8条</span></div>
+    <span class="sec-arrow">▾</span>
+  </div>
+  <div class="sec-body open">
+    <ul class="caution-list">
+      <li><span class="caution-icon">🌅</span><p class="caution-text"><strong>清晨起床三慢：</strong>起床要慢，坐起要慢，下地要慢。脑梗史人群清晨交感神经兴奋，血压高峰期起床过猛极易诱发心脑血管意外。建议醒来先在床上做10秒四肢伸展，再缓慢坐起。</p></li>
+      <li><span class="caution-icon">💧</span><p class="caution-text"><strong>晨起一杯温水：</strong>经过一夜睡眠，血液黏稠度最高。起床后立即喝200ml温开水，可有效稀释血液，降低清晨心肌梗死和脑梗风险。忌喝凉水或冰水。</p></li>
+      <li><span class="caution-icon">🧂</span><p class="caution-text"><strong>严格控盐：</strong>高血脂合并高血压者每日盐摄入量不超过5克（约一啤酒瓶盖）。避免腊肉、咸菜、酱菜等高盐食品。周口地区饮食偏咸，需特别注意。</p></li>
+      <li><span class="caution-icon">🏃</span><p class="caution-text"><strong>运动心率警戒线：</strong>您的目标心率 =（220-50）×0.6 = <em>102次/分</em>以下。快走、太极拳、八段锦为宜。禁止剧烈跑步、球类等无氧运动。</p></li>
+      <li><span class="caution-icon">😤</span><p class="caution-text"><strong>情绪管理：</strong>情绪激动会导致肾上腺素分泌，血管剧烈收缩，血压飙升，对血管硬化的中老年人极度危险。避免大怒、大喜、大悲。</p></li>
+      <li><span class="caution-icon">💤</span><p class="caution-text"><strong>睡前泡脚禁忌：</strong>水温不超过40℃，时间不超过20分钟，微微出汗即止。糖尿病合并血管病变者泡脚需特别谨慎，避免烫伤引发感染。</p></li>
+      <li><span class="caution-icon">💊</span><p class="caution-text"><strong>按时服药：</strong>降脂药、降糖药需每日定时服用，不能因为"感觉好了"就自行停药。春季气温波动大，血管调节能力差，更要规律用药。</p></li>
+      <li><span class="caution-icon">🥐</span><p class="caution-text"><strong>早餐必须吃：</strong>不吃早餐者血液黏稠度更高，易形成血栓。推荐早餐：全麦馒头+煮鸡蛋+豆浆，或周口豆腐脑配杂粮粥。严禁空腹运动。</p></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ 饮食建议 ══ -->
+<div class="section" id="sec-diet">
+  <div class="sec-header open" onclick="toggleSection(this)">
+    <div class="sec-left"><span class="sec-icon">🥗</span><span class="sec-title">饮食建议</span><span class="sec-count">10条核心原则</span></div>
+    <span class="sec-arrow">▾</span>
+  </div>
+  <div class="sec-body open">
+    <table class="diet-table">
+      <thead>
+        <tr><th>食物类型</th><th>推荐</th><th>理由</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="food">🥬 蔬菜</td><td>芹菜、洋葱、苦瓜、冬瓜、黑木耳、西兰花、茄子</td><td class="note">芹菜含丁基苯酞，辅助降压；洋葱含硫化物，软化血管；苦瓜辅助降糖</td></tr>
+        <tr><td class="food">🍚 主食</td><td>糙米、燕麦、荞麦、全麦馒头、玉米、小米</td><td class="note">升糖指数低，膳食纤维丰富；替代白米白面</td></tr>
+        <tr><td class="food">🥩 蛋白质</td><td>去皮鸡胸、鱼（鲫鱼、鲤鱼）、虾、豆腐、豆浆</td><td class="note">优质蛋白，脂肪含量低；深海鱼含Omega-3降血脂</td></tr>
+        <tr><td class="food">🍎 水果</td><td>苹果、梨、猕猴桃、柚子、草莓</td><td class="note">低GI水果，每天不超过200g；柚子注意与降脂药相互作用</td></tr>
+        <tr><td class="food">🫘 豆类</td><td>黄豆、黑豆、纳豆（适量）、豆浆、豆腐</td><td class="note">含大豆异黄酮，辅助降血脂；周口优质黄豆资源丰富</td></tr>
+        <tr><td class="food">🧄 调味</td><td>大蒜、醋、柠檬汁、香草</td><td class="note">大蒜含蒜素降血脂；醋软化血管；限盐</td></tr>
+        <tr><td class="avoid">❌ 禁忌</td><td>肥肉、动物内脏、腊肉、咸菜、油炸食品、蛋糕</td><td class="note">高饱和脂肪、高胆固醇、高盐、高糖，加速血管硬化</td></tr>
+        <tr><td class="avoid">❌ 禁忌</td><td>白酒、啤酒、甜饮料、果汁</td><td class="note">酒精刺激心脏升高心率；甜饮料直接升血糖</td></tr>
+        <tr><td class="food">🌿 药食同源</td><td>山楂（少量泡水）、决明子茶、荷叶茶</td><td class="note">山楂消食活血，但含糖量高，胃酸过多者慎用</td></tr>
+        <tr><td class="food">🍵 饮品</td><td>温开水、淡绿茶（不加糖）、玉米须茶</td><td class="note">玉米须茶利尿降压；茶含有茶多酚有益血管</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ 周口地区饮食定制 ══ -->
+<div class="section" id="sec-local">
+  <div class="sec-header open" onclick="toggleSection(this)">
+    <div class="sec-left"><span class="sec-icon">🏠</span><span class="sec-title">周口地区饮食定制</span><span class="sec-count">8种本地食物推荐</span></div>
+    <span class="sec-arrow">▾</span>
+  </div>
+  <div class="sec-body open">
+    <div class="local-grid">
+      <div class="local-card">
+        <h3>🥣 小米粥（推荐）</h3>
+        <p>周口特产小米，富含B族维生素和膳食纤维。熬成粥后易消化，升血糖速度比白米粥慢。可加少量枸杞，不加糖。</p>
+        <span class="badge badge-allow">✅ 推荐</span>
+      </div>
+      <div class="local-card">
+        <h3>🫘 周口豆腐 / 豆腐脑（强烈推荐）</h3>
+        <p>周口豆腐为优质大豆蛋白，钙含量高，脂肪低。可做成豆腐脑早餐，配少量酱油和香葱，代替油条油饼。</p>
+        <span class="badge badge-allow">✅ 推荐</span>
+      </div>
+      <div class="local-card">
+        <h3>🍜 全麦手擀面（限量）</h3>
+        <p>周口人爱面食，推荐全麦面条替代精面，加芹菜叶、番茄、鸡蛋少量，汤面比拌面好，减少油脂摄入。</p>
+        <span class="badge badge-mod">⚠️ 限量</span>
+      </div>
+      <div class="local-card">
+        <h3>🌽 鲜玉米 / 玉米糁粥（推荐）</h3>
+        <p>周口玉米富含亚油酸和维生素E，有助于降低血液胆固醇。做玉米糁粥比白粥更适合糖友。</p>
+        <span class="badge badge-allow">✅ 推荐</span>
+      </div>
+      <div class="local-card">
+        <h3>🥬 蒸菜（强烈推荐）</h3>
+        <p>周口传统蒸菜——蒸芹菜叶、蒸萝卜丝、蒸野菜。少油少盐，保留蔬菜最大营养，是极好的控糖降脂饮食方式。</p>
+        <span class="badge badge-allow">✅ 推荐</span>
+      </div>
+      <div class="local-card">
+        <h3>🥩 油炸食物（禁止）</h3>
+        <p>周口传统早餐油条、油饼、糖糕——精制碳水+高温油脂，是高血糖高血脂的最大敌人，严禁食用。</p>
+        <span class="badge badge-avoid">❌ 禁止</span>
+      </div>
+      <div class="local-card">
+        <h3>🧂 咸菜 / 酱菜（禁止）</h3>
+        <p>周口人口味偏咸，咸菜、酱黄瓜、辣萝卜干含盐量极高。高血压合并血管硬化者每日限盐5g以内，咸菜必须戒掉。</p>
+        <span class="badge badge-avoid">❌ 禁止</span>
+      </div>
+      <div class="local-card">
+        <h3>🍶 白酒 / 啤酒（禁止）</h3>
+        <p>周口酒文化浓厚，但酒精直接损伤血管内皮，刺激心率加快，对脑梗史和血管硬化患者极度危险。若饮酒，只可极少量红酒。</p>
+        <span class="badge badge-avoid">❌ 禁止</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 健康资讯 ══ -->
+<div class="section" id="sec-news">
+  <div class="sec-header open" onclick="toggleSection(this)">
+    <div class="sec-left"><span class="sec-icon">📰</span><span class="sec-title">健康资讯</span><span class="sec-count">6条</span></div>
+    <span class="sec-arrow">▾</span>
+  </div>
+  <div class="sec-body open">
+    <div class="news-grid">
+      <div class="news-card"><div class="tag-row"><span class="tag tag-red">心脑血管</span><span class="tag tag-teal">热点</span></div><h3>春季气温骤升，血管硬化患者清晨发病率上升30%</h3><p class="desc">医学统计显示，春季气温波动大时，清晨6-10点为心脑血管意外高发时段。建议高风险人群在此时段避免剧烈活动，起床后30分钟内不服剧烈运动。</p><div class="meta"><span>健康时报 · 3月29日</span></div></div>
+      <div class="news-card"><div class="tag-row"><span class="tag tag-green">饮食</span><span class="tag tag-teal">科普</span></div><h3>哈佛研究：每日一把坚果降低心血管病风险25%</h3><p class="desc">哈佛大学公共卫生学院研究显示，每日摄入30克坚果（核桃、杏仁、腰果），可显著降低LDL坏胆固醇，改善血管内皮功能，降低心血管事件风险。</p><div class="meta"><span>39健康网 · 3月29日</span></div></div>
+      <div class="news-card"><div class="tag-row"><span class="tag tag-orange">糖尿病</span><span class="tag tag-teal">新知</span></div><h3>糖尿病合并高血脂：双重风险下的饮食管理新共识</h3><p class="desc">中华医学会糖尿病学分会发布最新共识：糖脂代谢紊乱患者每日膳食纤维摄入量应不低于25克，优选燕麦、糙米、豆类等低GI食物。</p><div class="meta"><span>中华糖尿病杂志 · 3月28日</span></div></div>
+      <div class="news-card"><div class="tag-row"><span class="tag tag-yellow">运动</span></div><h3>国家体育总局发布：50-60岁人群科学运动指南</h3><p class="desc">指南建议：每周5次有氧运动，每次30分钟，心率控制在最大心率50-60%；推荐快走、游泳、太极拳、八段锦、广场舞等低冲击运动。</p><div class="meta"><span>国家体育总局 · 3月27日</span></div></div>
+      <div class="news-card"><div class="tag-row"><span class="tag tag-red">警示</span></div><h3>脑梗康复患者春季复发风险比冬季高15%</h3><p class="desc">神经内科专家提醒：春季乍暖还寒，血管痉挛收缩是脑梗复发的重要诱因；有脑梗史的患者应坚持抗血小板药物治疗，切勿在春季自行停药。</p><div class="meta"><span>神经内科前沿 · 3月27日</span></div></div>
+      <div class="news-card"><div class="tag-row"><span class="tag tag-green">中医</span></div><h3>春季养肝正当时：中医推荐三道药膳调理高血脂</h3><p class="desc">中医认为春季属木，对应肝脏，是疏肝理气、调理血脂的最佳时节。推荐：山楂丹参茶、芹菜香菇汤、荷叶茯苓粥，适合本地食材，制作简便。</p><div class="meta"><span>中医养生周刊 · 3月26日</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>🩺 <strong>健康日报</strong> · 星野整理 · 2026.03.29 · 专属50岁高血糖高血脂心血管调理方案</p>
+  <p style="margin-top:6px">数据来源：健康时报 · 39健康网 · 中华糖尿病杂志 · 国家体育总局 · 新浪健康 · 中医养生周刊</p>
+  <p style="margin-top:4px;opacity:0.5">⚠️ 本日报仅供参考，不能替代医生诊断与治疗；如有不适请及时就医</p>
+</div>
+
+</div>
+
+<script>
+function filterTab(cat, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.section').forEach(sec => {
+    if (cat === 'all') sec.classList.remove('hidden');
+    else sec.classList.toggle('hidden', sec.id !== 'sec-' + cat);
+  });
+}
+function toggleSection(h) { h.classList.toggle('open'); h.nextElementSibling.classList.toggle('open'); }
+</script>
+</body>
+</html>
