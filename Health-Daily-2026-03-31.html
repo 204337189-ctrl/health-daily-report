@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>健康日报 - 2026年3月31日</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-size: 20px; font-family: -apple-system, 'Microsoft YaHei', sans-serif; background: #f0f4f8; color: #333; line-height: 1.8; }
+  .container { max-width: 700px; margin: 0 auto; padding: 20px; }
+  .header { background: linear-gradient(135deg, #2c7be5, #4a9ff5); color: white; padding: 28px 24px; border-radius: 16px; text-align: center; margin-bottom: 20px; }
+  .header h1 { font-size: 1.5em; margin-bottom: 6px; }
+  .header .date { opacity: 0.9; font-size: 0.9em; }
+  .card { background: white; border-radius: 14px; padding: 22px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .card-title { font-size: 1.1em; font-weight: bold; color: #2c7be5; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #e8f0fe; }
+  .weather-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .weather-item { background: #f8faff; border-radius: 10px; padding: 12px; text-align: center; }
+  .weather-item .icon { font-size: 1.8em; margin-bottom: 4px; }
+  .weather-item .label { color: #888; font-size: 0.85em; }
+  .weather-item .value { font-weight: bold; color: #333; font-size: 1.1em; }
+  .weather-alert { background: #fff8e1; border-left: 4px solid #ffa726; padding: 10px 14px; border-radius: 8px; margin-top: 12px; font-size: 0.95em; color: #555; }
+  .meal-section { margin-bottom: 14px; }
+  .meal-label { display: inline-block; background: #e3f2fd; color: #1565c0; border-radius: 20px; padding: 2px 12px; font-size: 0.9em; font-weight: bold; margin-bottom: 6px; }
+  .meal-content { font-size: 1em; color: #444; padding-left: 4px; }
+  .tip-item { display: flex; align-items: flex-start; margin-bottom: 10px; }
+  .tip-icon { flex-shrink: 0; width: 28px; height: 28px; background: #e8f5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px; font-size: 0.85em; }
+  .tip-text { font-size: 0.98em; color: #444; }
+  .warn-item { background: #fff3e0; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; font-size: 0.98em; }
+  .warn-item strong { color: #e65100; }
+  .vital-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .vital-item { background: #f8faff; border-radius: 10px; padding: 12px; text-align: center; }
+  .vital-item .label { color: #888; font-size: 0.85em; }
+  .vital-item .value { font-weight: bold; color: #2c7be5; font-size: 1.15em; margin-top: 4px; }
+  .footer { text-align: center; color: #aaa; font-size: 0.8em; padding: 16px; }
+  .section-divider { border-left: 3px solid #2c7be5; padding-left: 12px; margin: 6px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 标题头 -->
+  <div class="header">
+    <h1>🌿 健康日报</h1>
+    <div class="date">2026年3月31日 · 周二 · 河南周口</div>
+  </div>
+
+  <!-- 今日天气 -->
+  <div class="card">
+    <div class="card-title">☁️ 今日天气</div>
+    <div class="weather-grid">
+      <div class="weather-item">
+        <div class="icon">🌡️</div>
+        <div class="label">气温</div>
+        <div class="value">0~7°C</div>
+      </div>
+      <div class="weather-item">
+        <div class="icon">🌥️</div>
+        <div class="label">天气</div>
+        <div class="value">多云转小雨</div>
+      </div>
+      <div class="weather-item">
+        <div class="icon">💧</div>
+        <div class="label">湿度</div>
+        <div class="value">87%</div>
+      </div>
+      <div class="weather-item">
+        <div class="icon">🍃</div>
+        <div class="label">风速</div>
+        <div class="value">10km/h</div>
+      </div>
+      <div class="weather-item">
+        <div class="icon">🌅</div>
+        <div class="label">日出</div>
+        <div class="value">07:08</div>
+      </div>
+      <div class="weather-item">
+        <div class="icon">🌇</div>
+        <div class="label">日落</div>
+        <div class="value">19:58</div>
+      </div>
+    </div>
+    <div class="weather-alert">
+      ⚠️ <strong>注意：</strong>今日下午有局地小雨，气温偏低（体感-1°C），出行请注意保暖，携带雨具。早晚温差大，高血压患者请避免晨起过早外出受凉。
+    </div>
+  </div>
+
+  <!-- 今日三餐 -->
+  <div class="card">
+    <div class="card-title">🍽️ 今日三餐</div>
+    
+    <div class="meal-section">
+      <div class="meal-label">🌅 早餐</div>
+      <div class="meal-content">周口豆腐脑（嫩）+ 荞麦馒头1个 + 小米粥1碗</div>
+    </div>
+
+    <div class="meal-section">
+      <div class="meal-label">🌞 午餐</div>
+      <div class="meal-content">清蒸草鱼 + 蒜蓉菜心 + 糙米饭1小碗 + 冬瓜虾皮汤</div>
+    </div>
+
+    <div class="meal-section">
+      <div class="meal-label">🌙 晚餐</div>
+      <div class="meal-content">芦笋黑木耳炒鸡胸 + 番茄蛋花汤 + 荞麦面条半碗</div>
+    </div>
+  </div>
+
+  <!-- 重点指标 -->
+  <div class="card">
+    <div class="card-title">📋 重点指标关注</div>
+    <div class="vital-grid">
+      <div class="vital-item">
+        <div class="label">血压（目标）</div>
+        <div class="value">&lt;140/90 mmHg</div>
+      </div>
+      <div class="vital-item">
+        <div class="label">空腹血糖（目标）</div>
+        <div class="value">3.9~7.0 mmol/L</div>
+      </div>
+      <div class="vital-item">
+        <div class="label">心率（目标）</div>
+        <div class="value">60~100 bpm</div>
+      </div>
+      <div class="vital-item">
+        <div class="label">总胆固醇（目标）</div>
+        <div class="value">&lt;5.2 mmol/L</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 饮食提醒 -->
+  <div class="card">
+    <div class="card-title">🥗 饮食提醒</div>
+    <div class="tip-item">
+      <div class="tip-icon">✅</div>
+      <div class="tip-text">今日选择低脂高蛋白的清蒸草鱼和鸡胸肉，有助于控制血脂，保护血管。</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">✅</div>
+      <div class="tip-text">糙米和荞麦替代精米白面，增加膳食纤维，有助于血糖平稳。</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">✅</div>
+      <div class="tip-text">冬瓜虾皮汤、番茄蛋花汤清淡利尿，适合心脑血管疾病患者。</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">⚠️</div>
+      <div class="tip-text">今日小雨天气，气温偏低，晚餐可适当提前，避免过晚进食影响血压和血糖。</div>
+    </div>
+  </div>
+
+  <!-- 生活提醒 -->
+  <div class="card">
+    <div class="card-title">🏠 生活提醒</div>
+    <div class="tip-item">
+      <div class="tip-icon">🌡️</div>
+      <div class="tip-text"><strong>保暖防寒：</strong>今日气温0~7°C，体感更低，有心脑血管病史者注意头部和四肢保暖，外出戴帽围巾。</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">🚶</div>
+      <div class="tip-text"><strong>适量运动：</strong>下午有雨，建议上午10点后、天气较好时外出散步30分钟，以室内柔和活动为主。</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">💊</div>
+      <div class="tip-text"><strong>按时服药：</strong>降压药、降糖药请遵医嘱定时服用，不要因天气变化擅自停药或减量。</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">🫀</div>
+      <div class="tip-text"><strong>情绪管理：</strong>阴雨天气容易影响情绪，建议听舒缓音乐、阅读，保持心态平和，避免情绪波动引发血压升高。</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">😴</div>
+      <div class="tip-text"><strong>充足睡眠：</strong>夜间气温低，起夜时注意保暖，建议23点前入睡，保证7~8小时睡眠。</div>
+    </div>
+  </div>
+
+  <!-- 禁忌提醒 -->
+  <div class="card">
+    <div class="card-title">🚫 今日禁忌</div>
+    <div class="warn-item"><strong>❌ 油炸食品：</strong>油条、炸糕等严格禁止，热量高加重血管负担。</div>
+    <div class="warn-item"><strong>❌ 咸菜腊肉：</strong>高盐食品升高血压，增加心脑血管风险。</div>
+    <div class="warn-item"><strong>❌ 白酒烈酒：</strong>酒精收缩血管，升高血压，严禁饮用。</div>
+    <div class="warn-item"><strong>❌ 剧烈运动：</strong>气温低+小雨天气，避免户外跑步或用力过猛，以防血管痉挛。</div>
+    <div class="warn-item"><strong>❌ 情绪激动：</strong>避免争吵、愤怒等情绪波动，保持心态平稳。</div>
+  </div>
+
+  <!-- 温馨提示 -->
+  <div class="card">
+    <div class="card-title">💡 健康提示</div>
+    <div class="tip-item">
+      <div class="tip-icon">🥣</div>
+      <div class="tip-text">早晨起床先喝一杯温开水（150ml），稀释血液，预防清晨心脑血管事件高发时段（6~10点）的风险。</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">🧂</div>
+      <div class="tip-text">全天用盐量不超过5克（约一啤酒瓶盖），烹饪时可用低钠盐代替普通食盐。</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">🥗</div>
+      <div class="tip-text">多吃深色蔬菜（菜心、西兰花、菠菜等），每天不少于500克，提供钾和膳食纤维，有助降压。</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>星野健康日报 · 2026-03-31</p>
+    <p>数据来源：wttr.in 天气 · 个人菜谱</p>
+  </div>
+</div>
+</body>
+</html>
