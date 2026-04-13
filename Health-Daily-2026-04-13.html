@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星野健康日报 · 2026-04-13</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: #f0f4f8; color: #333; font-size: 20px; line-height: 1.6; }
+.banner { background: linear-gradient(135deg, #1a3a5c 0%, #2c6a9f 100%); color: #fff; padding: 24px 30px; display: flex; gap: 30px; align-items: center; }
+.banner-left { flex: 1; }
+.banner-right { display: flex; gap: 10px; flex-wrap: wrap; }
+.tag { padding: 6px 16px; border-radius: 20px; font-size: 16px; font-weight: bold; }
+.tag-red { background: #ffcccc; color: #c0392b; }
+.tag-orange { background: #ffe0b2; color: #e67e22; }
+.tag-yellow { background: #fff9c4; color: #f39c12; }
+.tag-purple { background: #e1bee7; color: #8e24aa; }
+.tag-blue { background: #b3e5fc; color: #0277bd; }
+.weather-emoji { font-size: 40px; }
+.weather-temp { font-size: 36px; font-weight: bold; }
+.weather-info { font-size: 18px; opacity: 0.9; }
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 20px 30px; }
+.card { background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.card-title { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+.card-title.emoji { font-size: 28px; }
+.tabs { display: flex; background: #fff; padding: 0 30px; border-bottom: 2px solid #e0e0e0; }
+.tab { padding: 14px 20px; cursor: pointer; font-size: 18px; border-bottom: 3px solid transparent; transition: all 0.3s; }
+.tab.active { border-bottom-color: #2c6a9f; color: #2c6a9f; font-weight: bold; }
+.tab:hover { background: #f0f4f8; }
+.tab-content { display: none; padding: 24px 30px; }
+.tab-content.active { display: block; }
+.section-title { font-size: 24px; font-weight: bold; color: #1a3a5c; margin: 20px 0 12px; border-left: 5px solid #2c6a9f; padding-left: 12px; }
+.meal-card { background: #fff; border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.meal-type { font-size: 20px; font-weight: bold; color: #2c6a9f; margin-bottom: 6px; }
+.meal-name { font-size: 18px; color: #555; }
+.nutrition-highlight { background: #e8f5e9; border-radius: 10px; padding: 14px; margin-top: 14px; font-size: 17px; color: #2e7d32; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.food-item { background: #fff; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; font-size: 18px; }
+.food-item.recommend { border-left: 5px solid #4caf50; }
+.food-item.avoid { border-left: 5px solid #e53935; }
+.note-item { background: #fff; border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; display: flex; gap: 14px; align-items: flex-start; }
+.note-num { background: #2c6a9f; color: #fff; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; font-size: 16px; }
+.note-text { font-size: 18px; }
+.energy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.energy-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border-radius: 16px; padding: 24px; text-align: center; }
+.energy-card.alt { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+.energy-card.green { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: #333; }
+.energy-card.orange { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: #333; }
+.energy-title { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+.energy-text { font-size: 17px; opacity: 0.9; }
+.footer { background: #1a3a5c; color: #fff; text-align: center; padding: 20px; font-size: 16px; opacity: 0.8; margin-top: 30px; }
+.wx-card { background: #fff; border-radius: 12px; padding: 18px 20px; margin-top: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.07); }
+.wx-title { font-size: 20px; font-weight: bold; color: #1a3a5c; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<!-- 顶部横幅 -->
+<div class="banner">
+  <div class="banner-left">
+    <div class="weather-emoji">🌥️</div>
+    <div class="weather-temp">17°C</div>
+    <div class="weather-info">
+      <div>📍 周口 · 阴天</div>
+      <div>💧 湿度 76% · 东风 12km/h</div>
+      <div>👕 建议：薄外套 + 长袖，晨起偏凉记得添衣</div>
+    </div>
+  </div>
+  <div class="banner-right">
+    <span class="tag tag-red">🔴 高血脂</span>
+    <span class="tag tag-orange">🟠 高血糖</span>
+    <span class="tag tag-yellow">🟡 心率过高</span>
+    <span class="tag tag-purple">🟣 脑梗史</span>
+    <span class="tag tag-blue">🩵 血管硬化</span>
+  </div>
+</div>
+
+<!-- 四张总览卡片 -->
+<div class="cards">
+  <div class="card">
+    <div class="card-title emoji">👕</div>
+    <div class="card-title">今日穿衣</div>
+    <div>阴天17°C，晨起较凉，建议<strong>薄外套 + 长袖衫</strong>，午后可适当减衣，避免出汗受凉。</div>
+  </div>
+  <div class="card">
+    <div class="card-title emoji">🍽️</div>
+    <div class="card-title">今日饮食</div>
+    <div>气温平稳，宜清淡为主，<strong>少盐少油</strong>。晚餐七分饱，睡前2小时不进食。多吃深色蔬菜。</div>
+  </div>
+  <div class="card">
+    <div class="card-title emoji">🏃</div>
+    <div class="card-title">今日运动</div>
+    <div>阴天适合室内散步，<strong>目标心率≤102次/分</strong>（220-50）×0.6，以微微出汗、不疲劳为宜。</div>
+  </div>
+  <div class="card">
+    <div class="card-title emoji">💊</div>
+    <div class="card-title">今日提醒</div>
+    <div>春季脑梗高发期，<strong>按时服药不自行停药</strong>，晨起动作缓慢，发现异常立即就医。</div>
+  </div>
+</div>
+
+<!-- Tab导航 -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab(0)">🏠 全部</div>
+  <div class="tab" onclick="showTab(1)">🍽️ 今日菜谱</div>
+  <div class="tab" onclick="showTab(2)">🥗 食物宜忌</div>
+  <div class="tab" onclick="showTab(3)">⚠️ 注意事项</div>
+  <div class="tab" onclick="showTab(4)">💪 正能量</div>
+</div>
+
+<!-- Tab0: 全部 -->
+<div class="tab-content active" id="tab0">
+  <div class="section-title">🍽️ 今日菜谱</div>
+  <div class="meal-card">
+    <div class="meal-type">🌅 早餐</div>
+    <div class="meal-name">小米南瓜粥 + 荞麦煎饼 + 煮毛豆</div>
+  </div>
+  <div class="meal-card">
+    <div class="meal-type">☀️ 午餐</div>
+    <div class="meal-name">清蒸武昌鱼 + 蒜蓉油麦菜 + 糙米饭 + 紫菜蛋花汤</div>
+  </div>
+  <div class="meal-card">
+    <div class="meal-type">🌙 晚餐</div>
+    <div class="meal-name">芦笋炒虾仁 + 番茄豆腐汤 + 荞麦面条</div>
+    <div class="nutrition-highlight">✨ 营养亮点：武昌鱼富含优质蛋白，芦笋护血管，虾仁低脂高蛋白，豆腐补钙。晚餐清淡，睡前2小时不进食。</div>
+  </div>
+
+  <div class="section-title">⚠️ 今日注意事项</div>
+  <div class="note-item">
+    <div class="note-num">1</div>
+    <div class="note-text"><strong>清晨起床三慢</strong>：醒后躺30秒再坐起，坐起30秒再站起，站立30秒再迈步，防脑梗。</div>
+  </div>
+  <div class="note-item">
+    <div class="note-num">2</div>
+    <div class="note-text"><strong>晨起一杯温水</strong>：200ml温水，稀释血液黏稠度，促进排便。</div>
+  </div>
+  <div class="note-item">
+    <div class="note-num">3</div>
+    <div class="note-text"><strong>运动心率≤102次/分</strong>：有氧运动以不喘气、微微出汗为宜，切忌剧烈运动。</div>
+  </div>
+  <div class="note-item">
+    <div class="note-num">4</div>
+    <div class="note-text"><strong>按时服药不自行停药</strong>：高血糖高血脂需持续用药，漏服不可加倍补。</div>
+  </div>
+  <div class="note-item">
+    <div class="note-num">5</div>
+    <div class="note-text"><strong>控盐&lt;5g/日</strong>：周口口味偏咸，烹调时少放酱油、蚝油，可用酸味代替盐。</div>
+  </div>
+  <div class="note-item">
+    <div class="note-num">6</div>
+    <div class="note-text"><strong>泡脚水温≤40℃</strong>：水温过高加重心脏负担，泡脚时长不超过20分钟。</div>
+  </div>
+</div>
+
+<!-- Tab1: 今日菜谱 -->
+<div class="tab-content" id="tab1">
+  <div class="meal-card">
+    <div class="meal-type">🌅 早餐</div>
+    <div class="meal-name">小米南瓜粥 + 荞麦煎饼 + 煮毛豆</div>
+    <div class="nutrition-highlight">✨ 小米健脾养胃，南瓜富含β-胡萝卜素，荞麦富含膳食纤维利于控血糖，毛豆补优质蛋白。</div>
+  </div>
+  <div class="meal-card">
+    <div class="meal-type">☀️ 午餐</div>
+    <div class="meal-name">清蒸武昌鱼 + 蒜蓉油麦菜 + 糙米饭 + 紫菜蛋花汤</div>
+    <div class="nutrition-highlight">✨ 武昌鱼高蛋白低脂肪，蒸制保留营养；油麦菜富含维生素；糙米饭升糖慢；紫菜补碘护血管。</div>
+  </div>
+  <div class="meal-card">
+    <div class="meal-type">🌙 晚餐</div>
+    <div class="meal-name">芦笋炒虾仁 + 番茄豆腐汤 + 荞麦面条</div>
+    <div class="nutrition-highlight">✨ 芦笋含有天门冬酰胺，辅助扩张血管；虾仁低脂高蛋白；豆腐补钙；番茄富含番茄红素。注意：晚餐七分饱，睡前2小时不进食。</div>
+  </div>
+</div>
+
+<!-- Tab2: 食物宜忌 -->
+<div class="tab-content" id="tab2">
+  <div class="two-col">
+    <div>
+      <div class="section-title" style="border-left-color:#4caf50;">✅ 推荐食物</div>
+      <div class="food-item recommend">
+        <strong>周口胡辣汤（少辣）</strong> — 暖胃驱寒，适量饮用
+      </div>
+      <div class="food-item recommend">
+        <strong>淮山（山药）</strong> — 健脾益肺，黏液蛋白护血管
+      </div>
+      <div class="food-item recommend">
+        <strong>红曲米</strong> — 天然他汀，辅助降血脂
+      </div>
+      <div class="food-item recommend">
+        <strong>黑木耳</strong> — 降低血黏，防血栓
+      </div>
+      <div class="food-item recommend">
+        <strong>苦荞</strong> — 富含芦丁，扩张血管
+      </div>
+      <div class="food-item recommend">
+        <strong>深海鱼（三文鱼/武昌鱼）</strong> — EPA/DHA护心脑
+      </div>
+      <div class="food-item recommend">
+        <strong>洋葱</strong> — 含前列腺素A，稀释血液
+      </div>
+      <div class="food-item recommend">
+        <strong>燕麦</strong> — β-葡聚糖降胆固醇
+      </div>
+      <div class="food-item recommend">
+        <strong>豆腐/豆制品</strong> — 植物蛋白替代部分肉类
+      </div>
+      <div class="food-item recommend">
+        <strong>芹菜</strong> — 含丁基苯酞，辅助降压
+      </div>
+    </div>
+    <div>
+      <div class="section-title" style="border-left-color:#e53935;">❌ 禁忌食物</div>
+      <div class="food-item avoid">
+        <strong>油条</strong> — 高温油炸，含铝伤血管
+      </div>
+      <div class="food-item avoid">
+        <strong>咸菜/腌菜</strong> — 高盐致癌，升高血压
+      </div>
+      <div class="food-item avoid">
+        <strong>白酒</strong> — 加速血管硬化，脑梗大忌
+      </div>
+      <div class="food-item avoid">
+        <strong>腊肉/香肠</strong> — 高盐高脂，周口特产需控量
+      </div>
+      <div class="food-item avoid">
+        <strong>动物内脏（猪肝/猪心）</strong> — 胆固醇极高
+      </div>
+      <div class="food-item avoid">
+        <strong>甜汤圆</strong> — 糯米升糖快，对血糖不友好
+      </div>
+      <div class="food-item avoid">
+        <strong>浓肉汤</strong> — 嘌呤高，升高血脂尿酸
+      </div>
+      <div class="food-item avoid">
+        <strong>蜂蜜/含糖饮料</strong> — 直接升血糖
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tab3: 注意事项 -->
+<div class="tab-content" id="tab3">
+  <div class="note-item">
+    <div class="note-num">1</div>
+    <div class="note-text"><strong>清晨起床三慢</strong>：醒后躺30秒再坐起，坐起30秒再站起，站立30秒再迈步。春季温差大，血管收缩剧烈，脑梗高发，务必慢。</div>
+  </div>
+  <div class="note-item">
+    <div class="note-num">2</div>
+    <div class="note-text"><strong>晨起一杯温水</strong>：200ml温水，补充夜间水分消耗，稀释血液黏稠度，降低清晨心血管意外风险。</div>
+  </div>
+  <div class="note-item">
+    <div class="note-num">3</div>
+    <div class="note-text"><strong>运动心率≤102次/分</strong>：靶心率公式（220-年龄）×0.6 = 102次/分。推荐快走、太极、八段锦，以微微出汗、不喘气为准。</div>
+  </div>
+  <div class="note-item">
+    <div class="note-num">4</div>
+    <div class="note-text"><strong>按时服药不自行停药</strong>：降脂药、降糖药需每天定时服用。漏服勿加倍，脑梗史患者擅自停药风险极高。</div>
+  </div>
+  <div class="note-item">
+    <div class="note-num">5</div>
+    <div class="note-text"><strong>控盐&lt;5g/日</strong>：周口饮食偏咸，炒菜少放酱油蚝油，可用醋、柠檬汁、葱姜蒜提味。盐摄入过多直接升高血压。</div>
+  </div>
+  <div class="note-item">
+    <div class="note-num">6</div>
+    <div class="note-text"><strong>泡脚水温≤40℃</strong>：水温过热导致血管过度扩张，加重心脏负担。泡脚时长15-20分钟即可，有糖尿病足者慎泡。</div>
+  </div>
+</div>
+
+<!-- Tab4: 正能量 -->
+<div class="tab-content" id="tab4">
+  <div class="energy-grid">
+    <div class="energy-card">
+      <div class="energy-title">🌱 种一棵树最好的时间是现在</div>
+      <div class="energy-text">健康管理也是如此，今天的每一个小习惯，都是对未来最好的投资。</div>
+    </div>
+    <div class="energy-card alt">
+      <div class="energy-title">😊 笑一笑，血管更通畅</div>
+      <div class="energy-text">好心情是最好的血管扩张剂，家人需要你健康，更需要你开心。</div>
+    </div>
+    <div class="energy-card green">
+      <div class="energy-title">💊 按时吃药，是对家人最好的负责</div>
+      <div class="energy-text">照顾好自己，就是给家人最大的安心。</div>
+    </div>
+    <div class="energy-card orange">
+      <div class="energy-title">🚶 每一步都是康复</div>
+      <div class="energy-text">不求快，不求多，每天走一走，就是在战胜疾病。</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>星野健康日报 · 2026年4月13日 · 仅供参考，不构成医疗建议</p>
+  <p>如有不适请及时就医，祝您身体健康！🌟</p>
+</div>
+
+<script>
+function showTab(idx) {
+  document.querySelectorAll('.tab-content').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.tab-content')[idx].classList.add('active');
+  document.querySelectorAll('.tab')[idx].classList.add('active');
+}
+</script>
+</body>
+</html>
