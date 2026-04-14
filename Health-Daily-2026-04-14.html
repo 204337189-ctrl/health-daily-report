@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>健康日报 · 2026-04-14 · 周口</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 20px; background: #f4f7f6; color: #333; }
+
+  /* 顶部横幅 */
+  .banner {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: #fff; padding: 20px; display: flex; gap: 20px; flex-wrap: wrap;
+    border-radius: 0 0 16px 16px; margin-bottom: 16px;
+  }
+  .banner-left { flex: 1; min-width: 280px; }
+  .banner-right { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: flex-end; min-width: 200px; }
+  .weather-main { font-size: 1.4em; font-weight: bold; margin-bottom: 8px; }
+  .weather-sub { font-size: 0.9em; opacity: 0.9; line-height: 1.8; }
+  .health-tag {
+    display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.85em; font-weight: bold;
+  }
+  .tag-red { background: #ffebee; color: #c62828; }
+  .tag-orange { background: #fff3e0; color: #e65100; }
+  .tag-yellow { background: #fffde7; color: #f9a825; }
+  .tag-purple { background: #f3e5f5; color: #6a1b9a; }
+  .tag-blue { background: #e3f2fd; color: #1565c0; }
+
+  /* 四张总览卡片 */
+  .overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .card {
+    background: #fff; border-radius: 12px; padding: 18px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 5px solid #ddd;
+  }
+  .card-title { font-size: 1em; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .card-body { font-size: 0.85em; color: #555; line-height: 1.7; }
+  .card-穿衣 { border-left-color: #3498db; }
+  .card-饮食 { border-left-color: #27ae60; }
+  .card-运动 { border-left-color: #e67e22; }
+  .card-提醒 { border-left-color: #e74c3c; }
+
+  /* Tab导航 */
+  .tabs {
+    display: flex; background: #fff; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 12px;
+  }
+  .tab-btn {
+    flex: 1; padding: 14px 8px; border: none; background: transparent; cursor: pointer;
+    font-size: 0.85em; font-weight: bold; color: #888; transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab-btn.active { background: #3498db; color: #fff; }
+  .tab-content { display: none; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .tab-content.active { display: block; }
+
+  /* 菜谱 */
+  .meal-section { margin-bottom: 20px; }
+  .meal-title { font-size: 1.05em; font-weight: bold; color: #2c3e50; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 2px solid #3498db; }
+  .meal-item { font-size: 0.9em; color: #444; line-height: 1.8; padding: 4px 0; }
+  .meal-highlight {
+    background: #e8f5e9; border-radius: 8px; padding: 12px; margin-top: 12px;
+    font-size: 0.85em; color: #2e7d32; line-height: 1.7;
+  }
+  .meal-note {
+    background: #fff3e0; border-radius: 8px; padding: 10px; margin-top: 8px;
+    font-size: 0.82em; color: #e65100; line-height: 1.6;
+  }
+
+  /* 食物宜忌 */
+  .food-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .food-section h3 { font-size: 1em; margin-bottom: 10px; padding-bottom: 6px; }
+  .food-yes h3 { color: #2e7d32; border-bottom: 2px solid #4caf50; }
+  .food-no h3 { color: #c62828; border-bottom: 2px solid #f44336; }
+  .food-list { list-style: none; }
+  .food-list li { font-size: 0.85em; padding: 6px 0; line-height: 1.6; border-bottom: 1px solid #f0f0f0; }
+  .food-list li:last-child { border-bottom: none; }
+  .food-list li::before { margin-right: 8px; }
+  .food-yes li::before { content: "✅"; }
+  .food-no li::before { content: "❌"; }
+
+  /* 注意事项 */
+  .note-list { list-style: none; }
+  .note-list li {
+    font-size: 0.88em; padding: 10px 14px; margin-bottom: 8px; border-radius: 8px;
+    background: #f8f9fa; border-left: 4px solid #3498db; line-height: 1.7; color: #444;
+  }
+  .note-list li strong { color: #2c3e50; }
+
+  /* 正能量 */
+  .positivity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pos-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff; border-radius: 12px; padding: 18px 14px; text-align: center;
+  }
+  .pos-card-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+  .pos-card-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: #333; }
+  .pos-card-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: #333; }
+  .pos-title { font-size: 1.05em; font-weight: bold; margin-bottom: 8px; }
+  .pos-body { font-size: 0.82em; line-height: 1.7; opacity: 0.95; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 20px; color: #999; font-size: 0.78em; line-height: 1.8; }
+
+  @media (max-width: 600px) {
+    .food-grid, .positivity-grid { grid-template-columns: 1fr; }
+    .tabs { flex-wrap: wrap; }
+    .tab-btn { min-width: 50%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 顶部横幅 -->
+<div class="banner">
+  <div class="banner-left">
+    <div class="weather-main">🌤️ 周口 · 多云转晴，早晨有雾</div>
+    <div class="weather-sub">
+      📍 当前：19°C · 体感 19°C &nbsp;|&nbsp; 最高 22°C / 最低 11°C<br>
+      💧 湿度 64% &nbsp;|&nbsp; 🌬️ 东北风 5km/h &nbsp;|&nbsp; 紫外线指数 5（中等）<br>
+      👕 穿衣建议：薄外套 + 长袖，早晚温差大，晨起有雾注意保暖
+    </div>
+  </div>
+  <div class="banner-right">
+    <span class="health-tag tag-red">🔴 高血脂</span>
+    <span class="health-tag tag-orange">🟠 高血糖</span>
+    <span class="health-tag tag-yellow">🟡 心率过高</span>
+    <span class="health-tag tag-purple">🟣 脑梗史</span>
+    <span class="health-tag tag-blue">🩵 血管硬化</span>
+  </div>
+</div>
+
+<!-- 四张总览卡片 -->
+<div class="overview">
+  <div class="card card-穿衣">
+    <div class="card-title">🌡️ 今日穿衣</div>
+    <div class="card-body">
+      早晚雾气重，气温 11~13°C，建议穿外套 + 长袖；午后阳光充足，气温升至 21~22°C，可脱去外套穿长袖。遵循"洋葱式穿衣法"，方便随时增减。
+    </div>
+  </div>
+  <div class="card card-饮食">
+    <div class="card-title">🍽️ 今日饮食</div>
+    <div class="card-body">
+      气温回暖偏热，饮食以清淡易消化为主。多吃蔬菜水果（芹菜、苹果）、优质蛋白（鱼、豆腐）。周口口味偏咸，今日务必控盐。晚餐七分饱，餐后不进食。
+    </div>
+  </div>
+  <div class="card card-运动">
+    <div class="card-title">🏃 今日运动</div>
+    <div class="card-body">
+      多云转晴，适宜户外散步或太极。<strong>目标心率：≤ 102 次/分</strong>（有氧上限 = (220-50)×60%）。晨起有雾时避免外出，待雾气散去（上午9点后）再运动。
+    </div>
+  </div>
+  <div class="card card-提醒">
+    <div class="card-title">💊 今日提醒</div>
+    <div class="card-body">
+      ⚠️ 春季昼夜温差大，是脑梗高发期！请记住：清晨起床三慢、按时服药不自行停药、控盐&lt;5g/日、泡脚水温≤40℃。健康是给家人最好的礼物。
+    </div>
+  </div>
+</div>
+
+<!-- Tab导航 -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab(0)">全部</button>
+  <button class="tab-btn" onclick="showTab(1)">🍽️ 今日菜谱</button>
+  <button class="tab-btn" onclick="showTab(2)">🥗 食物宜忌</button>
+  <button class="tab-btn" onclick="showTab(3)">⚠️ 注意事项</button>
+  <button class="tab-btn" onclick="showTab(4)">💪 正能量</button>
+</div>
+
+<!-- Tab1：今日营养菜谱 -->
+<div class="tab-content active" id="tab-0">
+  <div class="meal-section">
+    <div class="meal-title">🌅 早餐</div>
+    <div class="meal-item">周口豆腐脑（嫩）+ 荞麦馒头1个 + 小米粥1碗</div>
+    <div class="meal-highlight">✨ 营养亮点：豆腐脑富含植物蛋白、钙质，搭配荞麦馒头增加膳食纤维，小米粥养胃健脾，适合春季养生。</div>
+    <div class="meal-note">⚠️ 注意：豆腐脑宜淡口味，少放酱油和盐。</div>
+  </div>
+  <div class="meal-section">
+    <div class="meal-title">🌞 午餐</div>
+    <div class="meal-item">清蒸草鱼 + 蒜蓉菜心 + 糙米饭1小碗 + 冬瓜虾皮汤</div>
+    <div class="meal-highlight">✨ 营养亮点：草鱼含优质蛋白和不饱和脂肪酸，有助于保护血管；蒜蓉菜心抗氧化；冬瓜虾皮汤利尿消肿，适合高血脂人群。</div>
+    <div class="meal-note">⚠️ 注意：清蒸少盐，糙米饭控制在1小碗（约100g熟重），有助于控血糖。</div>
+  </div>
+  <div class="meal-section">
+    <div class="meal-title">🌙 晚餐</div>
+    <div class="meal-item">芦笋黑木耳炒鸡胸 + 番茄蛋花汤 + 荞麦面条半碗</div>
+    <div class="meal-highlight">✨ 营养亮点：芦笋富含叶酸和膳食纤维，黑木耳活血抗凝，鸡胸低脂高蛋白，番茄富含番茄红素。整体清淡好消化，适合心脑血管人群。</div>
+    <div class="meal-note">⚠️ 注意：晚餐七分饱即可，餐后不要再进食，利于夜间血脂稳定。</div>
+  </div>
+</div>
+
+<!-- Tab2：食物宜忌 -->
+<div class="tab-content" id="tab-1">
+  <div class="food-grid">
+    <div class="food-section food-yes">
+      <h3>✅ 推荐食物</h3>
+      <ul class="food-list">
+        <li><strong>燕麦</strong> — 降低胆固醇，延缓血糖上升</li>
+        <li><strong>芹菜</strong> — 含丁基苯酞，辅助降压利尿</li>
+        <li><strong>黑木耳</strong> — 活血抗凝，预防血栓形成</li>
+        <li><strong>深海鱼（草鱼、鲈鱼）</strong> — Omega-3保护血管</li>
+        <li><strong>豆腐/豆腐脑</strong> — 优质植物蛋白，补钙降脂</li>
+        <li><strong>荞麦</strong> — 富含芦丁，改善血管脆性</li>
+        <li><strong>山药</strong> — 健脾养胃，辅助控血糖</li>
+        <li><strong>苹果/猕猴桃</strong> — 果胶丰富，降胆固醇</li>
+        <li><strong>核桃</strong> — 适量（每天3个），健脑护血管</li>
+        <li><strong>绿豆</strong> — 清热解毒，适合春季降火</li>
+      </ul>
+    </div>
+    <div class="food-section food-no">
+      <h3>❌ 禁忌食物</h3>
+      <ul class="food-list">
+        <li><strong>油条</strong> — 高温油炸，含铝伤血管</li>
+        <li><strong>咸菜/腊肉</strong> — 高盐升压，周口本地隐患</li>
+        <li><strong>白酒</strong> — 血管收缩，脑梗重大诱因</li>
+        <li><strong>动物内脏（猪肝等）</strong> — 高胆固醇加速硬化</li>
+        <li><strong>皮蛋</strong> — 含铅，不利血管健康</li>
+        <li><strong>甜饮料/奶茶</strong> — 精制糖升高血糖</li>
+        <li><strong>泡菜</strong> — 高盐，升高血黏度</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Tab3：今日注意事项 -->
+<div class="tab-content" id="tab-2">
+  <ul class="note-list">
+    <li><strong>① 清晨起床三慢</strong> — 醒后躺30秒再坐起，坐起后30秒再站起，站立后30秒再走动。防体位性低血压诱发脑梗。</li>
+    <li><strong>② 晨起一杯温水</strong> — 约200ml小口喝下，稀释血液黏稠度，降低清晨心脑血管意外风险。</li>
+    <li><strong>③ 运动心率 ≤ 102次/分</strong> — 运动上限=(220-50)×60%=102次/分。健走或太极，微微出汗即达标，切忌剧烈运动。</li>
+    <li><strong>④ 按时服药不自行停药</strong> — 高血脂、高血糖药物需持续服用，漏服一次不要双倍补，咨询医生处理。</li>
+    <li><strong>⑤ 控盐 &lt;5g/日</strong> — 周口地区饮食偏咸，是高血压重要诱因。用限盐勺，少放酱油和味精。</li>
+    <li><strong>⑥ 泡脚水温 ≤ 40℃</strong> — 水温过高加速血液循环，增加心脑负担。泡脚时间控制在15分钟以内。</li>
+  </ul>
+</div>
+
+<!-- Tab4：正能量 -->
+<div class="tab-content" id="tab-3">
+  <div class="positivity-grid">
+    <div class="pos-card">
+      <div class="pos-title">🌱 种一棵树最好的时间是现在</div>
+      <div class="pos-body">健康也是如此。今天走出的每一步，都会在未来的日子里回报你。坚持养生，从这一刻开始。</div>
+    </div>
+    <div class="pos-card pos-card-2">
+      <div class="pos-title">😊 笑一笑，血管更通畅</div>
+      <div class="pos-body">笑是最平价的良药。每次开怀大笑，血管内皮会释放一氧化氮，让血流更顺畅。今天，记得笑一笑。</div>
+    </div>
+    <div class="pos-card pos-card-3">
+      <div class="pos-title">💊 按时吃药，是对家人最好的负责</div>
+      <div class="pos-body">健康管理不是一个人的事。每一天按时服药、好好吃饭，就是在用行动爱着家人。</div>
+    </div>
+    <div class="pos-card pos-card-4">
+      <div class="pos-title">☀️ 今天的阳光值得你好好看</div>
+      <div class="pos-body">生活再忙，也要停下来感受。走到窗边，晒晒太阳，温暖的不只是身体，还有心灵。</div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>星野整理 · 仅供参考 · 不能替代医生诊断和治疗</p>
+  <p>如有不适，请及时就医</p>
+  <p>© 2026 健康日报 · 河南周口</p>
+</div>
+
+<script>
+function showTab(idx) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+  document.querySelectorAll('.tab-content').forEach((c,i) => c.classList.toggle('active', i===idx));
+}
+</script>
+
+</body>
+</html>
